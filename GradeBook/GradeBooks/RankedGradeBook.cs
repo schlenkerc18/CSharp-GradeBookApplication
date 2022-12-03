@@ -23,15 +23,15 @@ namespace GradeBook.GradeBooks
 
             grades.Sort();
 
-            int dropLetter = (int)(grades.Count * .2);
+            int dropLetter = (int)Math.Ceiling(grades.Count * .2);
 
-            if (averageGrade >= grades[grades.Count - 1 - dropLetter])
+            if (averageGrade >= grades[grades.Count - dropLetter])
                 return 'A';
-            else if (averageGrade >= grades[grades.Count - 1 - (dropLetter * 2)])
+            else if (averageGrade >= grades[grades.Count - (dropLetter * 2)])
                 return 'B';
-            else if (averageGrade >= grades[grades.Count - 1 - (dropLetter * 3)])
+            else if (averageGrade >= grades[grades.Count - (dropLetter * 3)])
                 return 'C';
-            else if (averageGrade >= grades[grades.Count - 1 - (dropLetter * 4)])
+            else if (averageGrade >= grades[grades.Count - (dropLetter * 4)])
                 return 'D';
             else
                 return 'F';
