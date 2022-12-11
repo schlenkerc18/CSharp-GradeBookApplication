@@ -23,18 +23,38 @@ namespace GradeBook.GradeBooks
 
             grades.Sort();
 
-            int dropLetter = (int)Math.Ceiling(grades.Count * .2);
-
-            if (averageGrade >= grades[grades.Count - dropLetter])
+            if (averageGrade >= grades[grades.Count - ((int)Math.Ceiling(grades.Count * .2))])
                 return 'A';
-            else if (averageGrade >= grades[grades.Count - (dropLetter * 2)])
+            else if (averageGrade >= grades[grades.Count - ((int)Math.Ceiling(grades.Count * .4))])
                 return 'B';
-            else if (averageGrade >= grades[grades.Count - (dropLetter * 3)])
+            else if (averageGrade >= grades[grades.Count - ((int)Math.Ceiling(grades.Count * .6))])
                 return 'C';
-            else if (averageGrade >= grades[grades.Count - (dropLetter * 4)])
+            else if (averageGrade >= grades[grades.Count - ((int)Math.Ceiling(grades.Count * .8))])
                 return 'D';
             else
                 return 'F';
+        }
+
+        public override void CalculateStatistics()
+        {
+            if (Students.Count < 5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade.");
+                return;
+            }
+
+            base.CalculateStatistics();
+        }
+
+        public override void CalculateStudentStatistics(string name)
+        {
+            if (Students.Count < 5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a studnent's overall grade.");
+                return;
+            }
+
+            base.CalculateStudentStatistics(name);
         }
     }
 }
