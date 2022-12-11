@@ -41,12 +41,13 @@ namespace GradeBook.UserInterfaces
             }
             var name = parts[1];
             var type = parts[2];
-            var gradeBook = choice switch
+            BaseGradeBook gradeBook = new BaseGradeBook(name);
+            gradeBook = type switch
             {
                 "standard" => new StandardGradeBook(name),
                 "ranked" => new RankedGradeBook(name),
                 _ => null
-            } 
+            };
             
             if (gradeBook == null)
             {
